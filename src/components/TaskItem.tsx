@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Task } from "../types/types";
 import TaskForm from "./TaskForm";
 import { useTaskContext } from "../context/TaskContext";
+import { Link } from "react-router-dom";
 
 interface TaskItemProps {
     task: Task;
@@ -40,7 +41,10 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
                     </p>
                 </>
             ) : (<>
-                <h3>{task.title}</h3>
+                <h3>
+                    <Link to={`/task/${task.id}`} style={{ textDecoration: 'none' }}>
+                        {task.title}
+                    </Link></h3>
                 <p>{task.description}</p>
                 <p>Status: {task.status}</p>
                 <button onClick={() => setIsEditing(true)} >Edit</button>
